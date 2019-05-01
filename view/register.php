@@ -7,7 +7,7 @@
     <body>
         <fieldset  style="font-family: Tahoma, Geneva, sans-serif">
             <legend><h3>User Register</h3></legend>
-            <form action="../controller/SavingsAccount.php" method="post">
+            <form action="../controller/CreateAccount.php" method="post">
                 <label for="firstname">First Name: </label><br>
                 <input id="firstname" name="firstname" type="text" required><br>
                 <label for="lastname">Last Name: </label><br>
