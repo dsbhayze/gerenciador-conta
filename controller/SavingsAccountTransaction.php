@@ -5,7 +5,6 @@
     $action =  $_REQUEST["action"];
     $email =  $_REQUEST["email"];
     $password = $_REQUEST["password"];
-    echo $password;
 
     if($action == "deposit"){
         $query_get_checking_accounts = "SELECT * FROM conta_poupanca WHERE email_user='$email'";

@@ -18,8 +18,6 @@
     if($row == 0)
         echo '<h1 style="color: red;font-text:sans-serif">Access Denied!</h1>';
     else {
-        echo '<h1 style="color: green;font-text:sans-serif">Access Provided!</h1>';
-    
         $query_get_checking_accounts = "SELECT * FROM conta_corrente WHERE email_user='$email'";
         $result_query_checking = mysqli_query($connection, $query_get_checking_accounts); 
         $num_rows_checking = mysqli_num_rows($result_query_checking);
@@ -30,6 +28,7 @@
 
         if ($num_rows_checking != 0 && $num_rows_savings != 0){
             echo '<body style="font-text:sans-serif">
+            <fieldset >
             <table style="border-collapse;width:50%;color:blue;font-family:monospace;font-size:15px;text-align:left">
                     <tr>Conta Corrente</tr>
                     <tr>
@@ -60,8 +59,8 @@
             while($row = mysqli_fetch_assoc($result_query_checking)){
                 echo "<tr><td>". $row["email_user"]."</td><td>". $row["balance"] ."</td></tr>";
             }
-            echo "</body></table><br>";
-            echo '<table style="border-collapse;width:50%;color:green;font-family:monospace;font-size:15px;text-align:left">
+            echo "</body></table></fieldset><br>";
+            echo '<fieldset><table style="border-collapse;width:50%;color:green;font-family:monospace;font-size:15px;text-align:left">
                     <tr>Conta Poupança</tr>
                     <tr>
                         <th>Email</th>
@@ -90,10 +89,10 @@
             while($row = mysqli_fetch_assoc($result_query_savings)){
                 echo "<tr><td>". $row["email_user"]."</td><td>". $row["balance"] ."</td></tr>"; 
             }
-            echo "</body></table>";
+            echo "</body></table></fieldset>";
         }
         else if ($num_rows_checking != 0){
-            echo '<table style="border-collapse;width:50%;color:blue;font-family:monospace;font-size:15px;text-align:left">
+            echo '<fieldset><table style="border-collapse;width:50%;color:blue;font-family:monospace;font-size:15px;text-align:left">
                     <tr>Conta Corrente</tr>
                         <tr>
                                 <th>Email</th>
@@ -123,7 +122,7 @@
             while($row = mysqli_fetch_assoc($result_query_checking)){
                 echo "<tr><td>". $row["email_user"]."</td><td>". $row["balance"] ."</td></tr>"; 
             }
-            echo '</body></table><br>
+            echo '</body></table></fieldset><br>
             <h2>You dont have saving account</h2>
             <h3>If You want to create one, please click here.</h3>
                 <table>
@@ -143,7 +142,7 @@
                 </table>';
         }
         else if ($num_rows_savings != 0){
-            echo '<table style="border-collapse;width:50%;color:blue;font-family:monospace;font-size:15px;text-align:left">
+            echo '<fieldset><table style="border-collapse;width:50%;color:blue;font-family:monospace;font-size:15px;text-align:left">
                     <tr>Conta Poupança</tr>
                     <tr>
                         <th>Email</th>
@@ -172,7 +171,7 @@
             while($row = mysqli_fetch_assoc($result_query_savings)){
                 echo "<tr><td>". $row["email_user"]."</td><td>". $row["balance"] ."</td></tr>"; 
             }
-            echo '</body></table><br>
+            echo '</body></table></fieldset><br>
             </body></table><br>
             <h2>You dont have saving account</h2>
             <h3>If You want to create one, please click here.</h3>
@@ -193,8 +192,8 @@
                 </table>';
         }
         else {
-            echo '<h3>You dont have any checking or saving account</h3>
-                    <h2>Please, create your account here</h2>
+            echo '<h2>You dont have any checking or saving account</h2>
+                    <h3>Please, create your account here</h3>
                     <table>
                         <form action="/gerenciador-conta/controller/CreateCheckingAccount.php" method="post">
                             <th>
